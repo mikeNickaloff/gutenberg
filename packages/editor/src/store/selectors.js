@@ -1078,15 +1078,6 @@ export const getMultiSelectedBlockClientIds = createSelector(
 	],
 );
 
-const mapMultiSelectedBlockClientIds = ( state, fn ) => {
-	const multiSelectedBlockClientIds = getMultiSelectedBlockClientIds( state );
-	if ( ! multiSelectedBlockClientIds.length ) {
-		return EMPTY_ARRAY;
-	}
-
-	return multiSelectedBlockClientIds.map( ( clientId ) => fn( clientId ) );
-};
-
 /**
  * Returns the current multi-selection set of blocks, or an empty array if
  * there is no multi-selection.
@@ -1097,7 +1088,12 @@ const mapMultiSelectedBlockClientIds = ( state, fn ) => {
  */
 export const getMultiSelectedBlocks = createSelector(
 	( state ) => {
-		return mapMultiSelectedBlockClientIds( state, ( clientId ) => getBlock( state, clientId ) );
+		const multiSelectedBlockClientIds = getMultiSelectedBlockClientIds( state );
+		if ( ! multiSelectedBlockClientIds.length ) {
+			return EMPTY_ARRAY;
+		}
+
+		return multiSelectedBlockClientIds.map( ( clientId ) => getBlock( state, clientId ) );
 	},
 	( state ) => [
 		...getMultiSelectedBlockClientIds.getDependants( state ),
@@ -1959,6 +1955,7 @@ export const getInserterItems = createSelector(
 	( state, rootClientId ) => [
 		state.blockListSettings[ rootClientId ],
 		state.editor.present.blocks.byClientId,
+		state.editor.present.blocks.order,
 		state.preferences.insertUsage,
 		state.settings.allowedBlockTypes,
 		state.settings.templateLock,
