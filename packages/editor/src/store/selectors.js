@@ -686,9 +686,7 @@ export const getBlock = createSelector(
 	( state, clientId ) => [
 		state.editor.present.blocks.byClientId[ clientId ],
 		getBlockDependantsCacheBust( state, clientId ),
-		state.editor.present.edits.meta,
-		state.initialEdits.meta,
-		state.currentPost.meta,
+		...getBlockAttributes.getDependants( state, clientId ),
 	]
 );
 
