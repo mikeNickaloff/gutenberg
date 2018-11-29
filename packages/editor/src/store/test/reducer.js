@@ -492,7 +492,7 @@ describe( 'state', () => {
 				isValid: true,
 			} );
 
-			expect( state.present.blocks.attributesByClientId.chicken ).toEqual( {
+			expect( state.present.blocks.attributes.chicken ).toEqual( {
 				content: 'ribs',
 			} );
 		} );
@@ -523,7 +523,7 @@ describe( 'state', () => {
 				isValid: false,
 			} );
 
-			expect( state.present.blocks.attributesByClientId.chicken ).toEqual( {
+			expect( state.present.blocks.attributes.chicken ).toEqual( {
 				ref: 3,
 			} );
 		} );
@@ -796,7 +796,7 @@ describe( 'state', () => {
 					name: 'core/test-block',
 				},
 			} );
-			expect( state.present.blocks.attributesByClientId ).toEqual( {
+			expect( state.present.blocks.attributes ).toEqual( {
 				ribs: {},
 			} );
 		} );
@@ -835,7 +835,7 @@ describe( 'state', () => {
 					name: 'core/test-block',
 				},
 			} );
-			expect( state.present.blocks.attributesByClientId ).toEqual( {
+			expect( state.present.blocks.attributes ).toEqual( {
 				ribs: {},
 			} );
 		} );
@@ -1258,7 +1258,7 @@ describe( 'state', () => {
 				} );
 			} );
 
-			describe( 'attributesByClientId', () => {
+			describe( 'attributes', () => {
 				it( 'should return with attribute block updates', () => {
 					const original = deepFreeze( editor( undefined, {
 						type: 'RESET_BLOCKS',
@@ -1276,7 +1276,7 @@ describe( 'state', () => {
 						},
 					} );
 
-					expect( state.present.blocks.attributesByClientId.kumquat.updated ).toBe( true );
+					expect( state.present.blocks.attributes.kumquat.updated ).toBe( true );
 				} );
 
 				it( 'should accumulate attribute block updates', () => {
@@ -1298,7 +1298,7 @@ describe( 'state', () => {
 						},
 					} );
 
-					expect( state.present.blocks.attributesByClientId.kumquat ).toEqual( {
+					expect( state.present.blocks.attributes.kumquat ).toEqual( {
 						updated: true,
 						moreUpdated: true,
 					} );
@@ -1317,7 +1317,7 @@ describe( 'state', () => {
 						},
 					} );
 
-					expect( state.present.blocks.attributesByClientId ).toBe( original.present.blocks.attributesByClientId );
+					expect( state.present.blocks.attributes ).toBe( original.present.blocks.attributes );
 				} );
 
 				it( 'should return with same reference if no changes in updates', () => {
@@ -1339,7 +1339,7 @@ describe( 'state', () => {
 						},
 					} );
 
-					expect( state.present.blocks.attributesByClientId ).toBe( state.present.blocks.attributesByClientId );
+					expect( state.present.blocks.attributes ).toBe( state.present.blocks.attributes );
 				} );
 			} );
 		} );

@@ -630,7 +630,7 @@ export const getBlock = createSelector(
 			return null;
 		}
 
-		let attributes = state.editor.present.blocks.attributesByClientId[ clientId ];
+		let attributes = state.editor.present.blocks.attributes[ clientId ];
 
 		// Inject custom source attribute values.
 		//
@@ -659,7 +659,7 @@ export const getBlock = createSelector(
 	},
 	( state, clientId ) => [
 		state.editor.present.blocks.byClientId[ clientId ],
-		state.editor.present.blocks.attributesByClientId[ clientId ],
+		state.editor.present.blocks.attributes[ clientId ],
 		getBlockDependantsCacheBust( state, clientId ),
 		state.editor.present.blocks.order[ clientId ],
 		state.editor.present.edits.meta,

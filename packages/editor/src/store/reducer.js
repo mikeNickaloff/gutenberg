@@ -287,8 +287,8 @@ const withBlockReset = ( reducer ) => ( state, action ) => {
 				...omit( state.byClientId, visibleClientIds ),
 				...getFlattenedBlocksWithoutAttributes( action.blocks ),
 			},
-			attributesByClientId: {
-				...omit( state.attributesByClientId, visibleClientIds ),
+			attributes: {
+				...omit( state.attributes, visibleClientIds ),
 				...getFlattenedBlockAttributes( action.blocks ),
 			},
 			order: {
@@ -305,7 +305,7 @@ const withBlockReset = ( reducer ) => ( state, action ) => {
  * Higher-order reducer which targets the combined blocks reducer and handles
  * the `SAVE_REUSABLE_BLOCK_SUCCESS` action. This action can't be handled by
  * regular reducers and needs a higher-order reducer since it needs access to
- * both `byClientId` and `attributesByClientId` simultaneously.
+ * both `byClientId` and `attributes` simultaneously.
  *
  * @param {Function} reducer Original reducer function.
  *
@@ -322,7 +322,7 @@ const withSaveReusableBlock = ( reducer ) => ( state, action ) => {
 
 		state = { ...state };
 
-		state.attributesByClientId = mapValues( state.attributesByClientId, ( attributes, clientId ) => {
+		state.attributes = mapValues( state.attributes, ( attributes, clientId ) => {
 			const { name } = state.byClientId[ clientId ];
 			if ( name === 'core/block' && attributes.ref === id ) {
 				return {
@@ -479,7 +479,7 @@ export const editor = flow( [
 			return state;
 		},
 
-		attributesByClientId( state = {}, action ) {
+		attributes( state = {}, action ) {
 			switch ( action.type ) {
 				case 'SETUP_EDITOR_STATE':
 					return getFlattenedBlockAttributes( action.blocks );
