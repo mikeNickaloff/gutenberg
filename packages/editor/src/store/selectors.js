@@ -661,7 +661,6 @@ export const getBlock = createSelector(
 		state.editor.present.blocks.byClientId[ clientId ],
 		state.editor.present.blocks.attributes[ clientId ],
 		getBlockDependantsCacheBust( state, clientId ),
-		state.editor.present.blocks.order[ clientId ],
 		state.editor.present.edits.meta,
 		state.initialEdits.meta,
 		state.currentPost.meta,
@@ -699,9 +698,7 @@ export const getBlocks = createSelector(
 				state.editor.present.blocks,
 			];
 		}
-		return [
-			getBlock.getDependants( state, rootClientId ),
-		];
+		return getBlock.getDependants( state, rootClientId );
 	}
 );
 
