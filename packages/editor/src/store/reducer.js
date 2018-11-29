@@ -92,8 +92,8 @@ function mapBlockOrder( blocks, rootClientId = '' ) {
  * applying a transformation function to each one.
  * Returns a flattened object with the transformed blocks.
  *
- * @param {*} blocks Blocks to flatten.
- * @param {*} transform Transforming function to be applied to each block.
+ * @param {Array} blocks Blocks to flatten.
+ * @param {Function} transform Transforming function to be applied to each block.
  *
  * @return {Object} Flattened object.
  */
